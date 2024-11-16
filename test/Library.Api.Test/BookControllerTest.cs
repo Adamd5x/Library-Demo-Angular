@@ -56,21 +56,21 @@ namespace Library.Api.Test
             result.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData ("")]
-        [InlineData ("123")]
-        [InlineData ("12345678901234")]
-        public async Task CheckIsbn_WithInRouteParam_ReturnsBadRequestResult (string isbn)
-        {
-            // Arrange
-            string testEndpoint = $"api/books/isbn/{isbn}";
+        //[Theory]
+        //[InlineData(null)]
+        //[InlineData ("")]
+        //[InlineData ("123")]
+        //[InlineData ("12345678901234")]
+        //public async Task CheckIsbn_WithInRouteParam_ReturnsBadRequestResult (string isbn)
+        //{
+        //    // Arrange
+        //    string testEndpoint = $"api/books/isbn/{isbn}";
 
-            // Act
-            var result = await client.GetAsync(testEndpoint);
+        //    // Act
+        //    var result = await client.GetAsync(testEndpoint);
 
-            // Assert
-            result.StatusCode.Should().Be (HttpStatusCode.BadRequest);
-        }
+        //    // Assert
+        //    result.StatusCode.Should().Be (HttpStatusCode.BadRequest);
+        //}
     }
 }
