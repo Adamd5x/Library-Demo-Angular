@@ -1,8 +1,5 @@
 :host {
-    div.container {
-        margin: 2rem auto;
-        width: 50vw;
-    }
+
 
     ul {
         list-style: none;
@@ -19,13 +16,5 @@
             width: 5ch;
             text-align: right;
         }
-    }
-
-    mat-card {
-        margin: 1rem 0;
-    }
-
-    mat-card-actions {
-        display: flex;
     }
 }
