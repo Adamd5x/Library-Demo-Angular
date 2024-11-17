@@ -1,0 +1,18 @@
+<h1>Welcome to Spy Librawy (Demo)</h1>
+<div class="container">
+    <mat-card>
+        <mat-card-content>
+            <h2>Our statistics:</h2>
+            <ul class="stats">
+                <li><span>Total:</span><span class="values">{{ statData?.total }}</span></li>
+                <li><span>Available books:</span><span class="values">{{ statData?.availableBooks }}</span></li>
+                <li><span>Authors:</span><span class="values">{{ statData?.authors }}</span></li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-actions>
+            <a mat-raised-button><mat-icon>library_books</mat-icon>Library</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,22 +1,30 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { InitializerModule } from './initializer/initializer.module';
+import { configInitializer } from './initializer/initializer-factory';
+import { ConfigService } from './initializer/config.service';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    InitializerModule,
     BrowserModule,
     AppRoutingModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configInitializer,
+      deps: [ConfigService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

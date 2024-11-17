@@ -14,8 +14,8 @@ public class ConfigController : ControllerBase
     {
         Dictionary<EndpointTypes, string> endpoints = new()
         {
-            {EndpointTypes.Home, "api/home" },
-            {EndpointTypes.Shelf, "api/library" }
+            {EndpointTypes.Statistics, "api/home" },
+            {EndpointTypes.Library, "api/library" }
         };
 
         return Ok (new ApiResult<ConfigResponse>(true, new(endpoints)));

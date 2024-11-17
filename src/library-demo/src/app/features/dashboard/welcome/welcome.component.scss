@@ -1,0 +1,31 @@
+:host {
+    div.container {
+        margin: 2rem auto;
+        width: 50vw;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &.stats li span {
+            display: inline-block;
+            width: 15ch;
+        }
+
+        &.stats li span.values {
+            display: inline-block;
+            width: 5ch;
+            text-align: right;
+        }
+    }
+
+    mat-card {
+        margin: 1rem 0;
+    }
+
+    mat-card-actions {
+        display: flex;
+    }
+}

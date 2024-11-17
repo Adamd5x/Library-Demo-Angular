@@ -14,7 +14,7 @@ const NotFoundCode = 404;
 @Injectable()
 export class DataService{
  
-  apiUrl: string = environment.apiurl;
+  apiUrl: string = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -22,7 +22,7 @@ public get<TModel>(entryUrl: string,
                    headers?: HttpHeaders | {[header: string]: string | string[]},
                    params?: HttpParams | {[params: string]: string | number | boolean | ReadonlyArray<string | number | boolean>},
                    withCredentials?: boolean): Observable<TModel> {
-    const url = `{this.apiUrl}/${entryUrl}`;
+    const url = `${this.apiUrl}/${entryUrl}`;
 
     return this.http.get<TModel>(
         url,

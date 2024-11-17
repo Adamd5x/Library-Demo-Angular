@@ -2,6 +2,6 @@
 
 public enum EndpointTypes
 {
-    Home,
-    Shelf
+    Statistics,
+    Library
 }
