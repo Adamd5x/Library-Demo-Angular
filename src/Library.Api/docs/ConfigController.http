@@ -1,0 +1,6 @@
+﻿@apiUrl={{Proto}}://{{HostAddress}}:{{Port}}/api
+
+GET {{apiUrl}}/config
+Accept: {{JsonAccept}}
+
+###

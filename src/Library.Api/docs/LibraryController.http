@@ -1,0 +1,41 @@
+﻿@apiUrl={{Proto}}://{{HostAddress}}:{{Port}}/api
+
+GET {{apiUrl}}/library?sortBy=Title&sortOrder=Ascending&offset=0&size=50
+Accept: {{JsonAccept}}
+
+###
+GET {{apiUrl}}/library/1002
+Accept: {{JsonAccept}}
+
+###
+GET {{apiUrl}}/library/isbn/2000000000008
+Accept: {{JsonAccept}}
+
+###
+POST {{apiUrl}}/library
+Content-Type: {{JsonAccept}}
+{
+    "id": 0,
+    "isbn": "2000000000000",
+    "title": "Holub II",
+    "state": "OnTheShelf",
+    "author": "Piotr Wroński"
+}
+
+###
+DELETE {{apiUrl}}/library/1002
+
+###
+PUT {{apiUrl}}/library/1003
+Content-Type: {{JsonAccept}}
+{
+    "id": 1003,
+    "isbn": "2000000000008",
+    "title": "Holub II",
+    "state": "OnTheShelf",
+    "author": "Piotr Wroński"
+}
+
+###
+PUT {{apiUrl}}/library/chstate/9/Borrowed
+Accept: {{JsonAccept}}

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Library.Api.Test"/>
+		<InternalsVisibleTo Include="Library.Api.Test" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -16,6 +16,7 @@
 	
   <ItemGroup>
     <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="Hashids.net" Version="1.7.0" />
     <PackageReference Include="Serilog" Version="4.0.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />

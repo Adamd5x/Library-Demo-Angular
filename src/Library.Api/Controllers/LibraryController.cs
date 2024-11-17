@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Api.Controllers;
 
-[Route ("api/books")]
+[Route ("api/library")]
 [ApiController]
 [Produces(MediaTypeNames.Application.Json)]
-public class BookController(IBookCoreService coreService) : ControllerBase
+public class LibraryController(IBookCoreService coreService) : ControllerBase
 {
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResult<BookDto>))]
@@ -62,7 +62,7 @@ public class BookController(IBookCoreService coreService) : ControllerBase
             return BadRequest (GetProblemDetails (result.FirstError));
         }
 
-        return Ok (new ApiResult<IEnumerable<BookDto>>(!result.IsError, result.Value));
+        return Ok (new ApiResult<IEnumerable<BookDto>>(!result.IsError, string.Empty, string.Empty, result.Value, new Page(offset, size)));
     }
 
     [HttpGet("isbn/{isbn}")]

@@ -1,11 +1,13 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Xunit.Abstractions;
 
 namespace Library.Api.Test;
 
 public class StartUpTest: IClassFixture<WebApplicationFactory<Program>>
 {
+    private readonly ITestOutputHelper output;
     private readonly WebApplicationFactory<Program> _factory;
 
     readonly List<Type> controllerList = typeof(Program).Assembly
@@ -13,8 +15,10 @@ public class StartUpTest: IClassFixture<WebApplicationFactory<Program>>
         .Where(x => x.IsSubclassOf(typeof(ControllerBase)))
         .ToList();
 
-    public StartUpTest(WebApplicationFactory<Program> factory)
+    public StartUpTest(WebApplicationFactory<Program> factory,
+                       ITestOutputHelper testOutput)
     {
+        output = testOutput;
         _factory = factory;
         _factory = factory.WithWebHostBuilder (builder =>
         {
@@ -30,14 +34,18 @@ public class StartUpTest: IClassFixture<WebApplicationFactory<Program>>
     {
         // Arrange
         var scopeFactory = _factory.Services.GetService<IServiceScopeFactory>();
-        using var scope = scopeFactory.CreateScope();
+        using var scope = scopeFactory?.CreateScope();
 
         // Act
 
         // Assert
         controllerList.ForEach (item => { 
-            var controller = scope.ServiceProvider.GetService(item);
-            controller.Should().NotBeNull();
+            if (scope is not null)
+            {
+                var controller = scope.ServiceProvider.GetService(item);
+                output.WriteLine (controller?.GetType ().Name);
+                controller.Should ().NotBeNull ();
+            }
         });
     }
 }

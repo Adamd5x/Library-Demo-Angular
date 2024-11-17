@@ -3,8 +3,9 @@ using Library.Api.Test.Fixture;
 
 namespace Library.Api.Test
 {
-    public class BookControllerTest(ApiWebHostFactory factory): IClassFixture<ApiWebHostFactory>
+    public class LibraryControllerTest(ApiWebHostFactory factory): IClassFixture<ApiWebHostFactory>
     {
+        private const string LibraryApi = "api/library";
         readonly HttpClient client = factory.CreateClient();
 
         [Theory]
@@ -16,7 +17,7 @@ namespace Library.Api.Test
         public async Task GetAll_WithQueryParams_ReturnsOkResult(string query)
         {
             // Arrange
-            string testEndpoint = $"api/books?{query}";
+            string testEndpoint = $"{LibraryApi}?{query}";
 
             // Act
             var result = await client.GetAsync(testEndpoint);
@@ -33,7 +34,7 @@ namespace Library.Api.Test
         public async Task GetAll_WithQueryParams_ReturnsBadRequestResult (string query)
         {
             // Arrange
-            string testEndpoint = $"api/books?{query}";
+            string testEndpoint = $"{LibraryApi}?{query}";
 
             // Act
             var result = await client.GetAsync(testEndpoint);
@@ -47,7 +48,7 @@ namespace Library.Api.Test
         public async Task CheckIsbn_WithInRouteParam_ReturnsOkResult(string isbn)
         {
             // Arrange
-            string testEndpoint = $"api/books/isbn/{isbn}";
+            string testEndpoint = $"{LibraryApi}/isbn/{isbn}";
 
             // Act
             var result = await client.GetAsync (testEndpoint);
