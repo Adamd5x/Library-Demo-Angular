@@ -6,6 +6,8 @@ import { NavigationCancel,
          NavigationEnd,
          NavigationError,
          NavigationStart,
+         RouteConfigLoadEnd,
+         RouteConfigLoadStart,
          Router } from '@angular/router';
 
 @Component({
@@ -28,11 +30,14 @@ export class LoadingComponent implements OnInit {
     if (this.detectRoutingOngoing) {
       this.router.events.subscribe(
         event => {
-          if (event instanceof NavigationStart) {
+          if (event instanceof NavigationStart ||
+              event instanceof RouteConfigLoadStart
+          ) {
             this.loadingService.loadingOn();
           } else if (event instanceof NavigationEnd ||
                      event instanceof NavigationError ||
-                     event instanceof NavigationCancel
+                     event instanceof NavigationCancel ||
+                     event instanceof RouteConfigLoadEnd
           ) {
             this.loadingService.loadingOff();
           }
