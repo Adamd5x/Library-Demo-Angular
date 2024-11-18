@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map,
          Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { Endpoints } from '@root/shared/functions/endpoints';
 import { Book } from '../models/book';
 import { ApiResponse } from '@root/shared/models/api-response';
 import { BookState } from '../models/book-state';
+import { SortOrder } from '@root/shared/types/sort-order';
 
 @Injectable()
 export class LibraryService extends DataService {
@@ -17,17 +18,28 @@ export class LibraryService extends DataService {
     super(http);
    }
 
-   getBooks(): Observable<Book[] | null | undefined> {
-    return this.get<ApiResponse<Book[]>>(`${this.url}`)
+   getBooks(sortBy: string = "Title",
+            sortOrder: SortOrder = 'Ascending',
+            offset: number = 0,
+            size: number = 10
+   ): Observable<Book[]> {
+    return this.get<ApiResponse<Book[]>>(`${this.url}`, 
+               new HttpHeaders(),
+               new HttpParams()
+                  .set('sortBy', sortBy)
+                  .set('sortOrder', sortOrder)
+                  .set('offset', offset)
+                  .set('size', size)
+               )
                .pipe(
-                  map(x => x.data)
+                  map(x => x.data as Book[])
                )
    }
 
-   getBook(id: string): Observable<Book | null | undefined> {
+   getBook(id: string): Observable<Book> {
     return this.get<ApiResponse<Book>>(`${this.url}/id`)
                .pipe(
-                map(x => x.data)
+                map(x => x.data as Book)
                )
    }
 
