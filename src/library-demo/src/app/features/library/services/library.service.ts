@@ -19,7 +19,7 @@ export class LibraryService extends DataService {
    }
 
    getBooks(sortBy: string = "Title",
-            sortOrder: SortOrder = 'Ascending',
+            sortOrder: SortOrder = 'asc',
             offset: number = 0,
             size: number = 10
    ): Observable<Book[]> {

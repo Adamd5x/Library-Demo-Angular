@@ -54,14 +54,14 @@ public class BookCoreService(IUnitOfWork unitOfWork, IMapper mapper) : IBookCore
     {
         Dictionary<string, Func<IQueryable<Book>, IOrderedQueryable<Book>>> sorting = new() 
         {
-            { "isbn+ascending", (x) => x.OrderBy(x => x.Isbn)},
-            { "isbn+descending", (x) => x.OrderByDescending(x => x.Isbn)},
-            { "title+ascending", (x) => x.OrderBy(x => x.Title)},
-            { "title+descending", (x) => x.OrderByDescending(x => x.Title)},
-            { "state+ascending", (x) => x.OrderBy(x => x.State)},
-            { "state+descending", (x) => x.OrderByDescending(x => x.State)},
-            { "author+ascending", (x) => x.OrderBy(x => x.Author)},
-            { "author+descending", (x) => x.OrderByDescending(x => x.Author)},
+            { "isbn+asc", (x) => x.OrderBy(x => x.Isbn)},
+            { "isbn+desc", (x) => x.OrderByDescending(x => x.Isbn)},
+            { "title+asc", (x) => x.OrderBy(x => x.Title)},
+            { "title+desc", (x) => x.OrderByDescending(x => x.Title)},
+            { "state+asc", (x) => x.OrderBy(x => x.State)},
+            { "state+desc", (x) => x.OrderByDescending(x => x.State)},
+            { "author+asc", (x) => x.OrderBy(x => x.Author)},
+            { "author+desc", (x) => x.OrderByDescending(x => x.Author)},
         };
 
         string sortKey = $"{sortBy}+{sortOrder}".ToLower();

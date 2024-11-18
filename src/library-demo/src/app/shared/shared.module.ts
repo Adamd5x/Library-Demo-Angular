@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCommonModule } from '@angular/material/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { StateService } from './services/state.service';
 
 @NgModule({
     imports: [
@@ -21,9 +22,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatProgressBarModule
     ],
     exports: [],
-    providers: [{
-        provide: ErrorHandler,
-        useClass: AppErrorHandler
-    }]
+    providers: [
+        StateService,
+        {
+            provide: ErrorHandler,
+            useClass: AppErrorHandler
+        }]
 })
 export class ShareModule {}

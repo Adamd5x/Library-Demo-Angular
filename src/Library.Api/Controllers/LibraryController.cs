@@ -41,7 +41,7 @@ public class LibraryController(IBookCoreService coreService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResult<IEnumerable<BookDto>>))]
     [ProducesResponseType (StatusCodes.Status400BadRequest, Type = typeof (ProblemDetails))]
     [ProducesResponseType (StatusCodes.Status404NotFound, Type = typeof (ProblemDetails))]
-    public async Task<IActionResult> GetBooks (string sortBy = "Title", string sortOrder = "Ascending", int offset = 0, int size = 50) {
+    public async Task<IActionResult> GetBooks (string sortBy = "Title", string sortOrder = "asc", int offset = 0, int size = 50) {
 
         bool isSortColumnValid = SortColumnValidator.Validate (sortBy);
         bool isPagingValid = offset >= 0 && size >=0 && size <= 100;
