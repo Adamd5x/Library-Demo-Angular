@@ -4,6 +4,7 @@ import { Component,
 
 import { Book } from '../models/book';
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-book',
@@ -14,11 +15,24 @@ export class BookComponent implements OnInit {
 
   book: Book | null = null;
 
-  private activatedRoute = inject(ActivatedRoute);
+  form = this.fb.group({
+    isbn: [this.book?.isbn, []],
+    title: [this.book?.title, []],
+    author: [this.book?.author, []],
+    state: [this.book?.state, []]
+  })
+
+  constructor(public fb: FormBuilder,
+              private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.activatedRoute
-        .data
-        .subscribe(({data}) => this.book = data);
+    this.book = this.route
+                    .snapshot
+                    .data['book'];
+
+    this.form.controls['isbn'].setValue(this.book?.isbn);
+    this.form.controls['title'].setValue(this.book?.title);
+    this.form.controls['author'].setValue(this.book?.author);
+    this.form.controls['state'].setValue(this.book?.state);
   }
 }

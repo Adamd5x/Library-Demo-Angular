@@ -14,7 +14,7 @@ const routes: Routes = [
     {
         path: ':id',
         component: BookComponent,
-        resolve: { data: BookResolver}
+        resolve: { book: BookResolver }
     }
 ];
 

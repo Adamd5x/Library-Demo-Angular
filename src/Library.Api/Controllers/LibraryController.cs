@@ -17,15 +17,16 @@ public class LibraryController(IBookCoreService coreService) : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ApiResult<BookDto>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
-    public async Task<IActionResult> GetBook ([FromRoute]int id)
+    public async Task<IActionResult> GetBook ([FromRoute]string id)
     {
-        bool isIdInvalid = id <= 0;
+        _ = int.TryParse (id, out int passedId);
+        bool isIdInvalid =  passedId <= 0;
         if (isIdInvalid) 
         {
             return BadRequest ();
         }
 
-        var result = await coreService.GetAsync(id);
+        var result = await coreService.GetAsync(passedId);
         if (result.IsError) 
         {
             if (result.FirstError.Type == ErrorType.NotFound) 

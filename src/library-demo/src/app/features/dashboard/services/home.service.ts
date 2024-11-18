@@ -18,8 +18,6 @@ export class HomeService extends DataService {
   getLibraryStat(): Observable<LibraryStatistics | null | undefined> {
     const url = this.endpoints.endpoints.Statistics;
 
-    console.log(url);
-
     return this.get<ApiResponse<LibraryStatistics>>(`${url}`)
                .pipe(
                   map(x => x.data)

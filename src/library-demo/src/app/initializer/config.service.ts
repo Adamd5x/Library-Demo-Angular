@@ -19,7 +19,6 @@ export class ConfigService {
             const response = data;
             const endpoints = response.data as ConfigResponse;
             sessionStorage.setItem("endpoints", JSON.stringify(endpoints));
-            console.log('Config loaded: ', endpoints);
         });
     }
 

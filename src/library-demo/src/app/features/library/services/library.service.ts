@@ -37,7 +37,7 @@ export class LibraryService extends DataService {
    }
 
    getBook(id: string): Observable<Book> {
-    return this.get<ApiResponse<Book>>(`${this.url}/id`)
+    return this.get<ApiResponse<Book>>(`${this.url}/${id}`)
                .pipe(
                 map(x => x.data as Book)
                )

@@ -28,7 +28,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   loading = false;
   books: Book[] = [];
-  displayedColumns: string[] = ['title','isbn','author','state'];
+  displayedColumns: string[] = ['title','isbn','author','state', 'action'];
   
   @ViewChild(MatSort, {static: false})
   sort!: MatSort;
@@ -44,8 +44,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   sortBy = "Title";
   sortOrder: SortOrder = 'asc';
 
-  constructor(private route: ActivatedRoute,
-              private libraryService: LibraryService,
+  constructor(private libraryService: LibraryService,
               private stateService: StateService){}
 
   ngOnInit(): void {

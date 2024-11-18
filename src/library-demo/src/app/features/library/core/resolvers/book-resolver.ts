@@ -1,25 +1,18 @@
 import { ResolveFn,
-         Router,
          ActivatedRouteSnapshot,
          RouterStateSnapshot
  } from '@angular/router';
 import { Book } from "../../models/book";
 import { inject } from '@angular/core';
+import { LibraryService } from '../../services/library.service';
+import { first } from 'rxjs';
 
-export const BookResolver: ResolveFn<Book> = async (
+export const BookResolver: ResolveFn<Book> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) => {
-        const bookId = route.paramMap.get('id');
-
-        const router = inject(Router);
-        
-
-        const result: Book = {
-            id: '1',
-            title: 'Some title',
-            author: 'Some author',
-            isbn: 'some isbn',
-            state: 'Demaged'
-        }
-        return result;
+        const bookId = route.paramMap.get('id')!;
+        return inject(LibraryService).getBook(bookId)
+                                     .pipe(
+                                        first()
+                                     );
     }
