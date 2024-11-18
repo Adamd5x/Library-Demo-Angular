@@ -51,7 +51,7 @@ public post<TModel>(entryUrl: string,
                                     catchError(this.handleError));
 }
 
-public update<TModel>(entryUrl: string, entry: Partial<TModel>, 
+public update<TModel>(entryUrl: string, entry?: Partial<TModel>, 
     headers?: HttpHeaders | {[header: string]: string | string[]},
     params?: HttpParams|{[param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>},
     withCredentials?: boolean): Observable<any> {

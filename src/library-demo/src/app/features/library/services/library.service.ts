@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map,
+         Observable } from 'rxjs';
 
 import { DataService } from '@root/shared/base/data.service';
 import { Endpoints } from '@root/shared/functions/endpoints';
@@ -30,20 +31,27 @@ export class LibraryService extends DataService {
                )
    }
 
-   deleteBook(id: string) {
+   deleteBook(id: string): Observable<void> {
+      return this.delete(`${this.url}/${id}`);
+   }
+
+   insertBook(entity: Book): Observable<Book> {
+      return this.post<Book>(`${this.url}`, entity);
+   }
+
+   updateBook(id: string, entity: Book): Observable<Book> {
+      return this.update<Book>(`${this.url}/${id}`, entity)
+                 .pipe(
+                   map(x => x.data)
+                 );
 
    }
 
-   insertBook(entity: Book) {
-
-   }
-
-   updateBook(id: string, entity: Book) {
-
-   }
-
-   changeState(id: string, state: BookState) {
-
+   changeState(id: string, state: BookState): Observable<void> {
+      return this.update<ApiResponse<boolean>>(`${this.url}/${id}/${state}`)
+                 .pipe(
+                     map(x => x.data)
+                 );
    }
 
    checkIsbn(isbn: string): Observable<boolean | null | undefined> {
