@@ -1,6 +1,6 @@
 :host {
 
-    a {
+    button {
         margin-right: 1rem;
     }
 
@@ -11,5 +11,10 @@
 
     mat-form-field {
         width: 100%;
+    }
+
+    legend span{
+        display: inline-block;
+        padding: 0 1rem 0 1rem;
     }
 }

@@ -4,7 +4,10 @@ import { Component,
 
 import { Book } from '../models/book';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder,
+         Validators } from '@angular/forms';
+import { LibraryService } from '../services/library.service';
+import { IsbnValidator } from '../core/validators/isbn-validator';
 
 @Component({
   selector: 'app-book',
@@ -15,24 +18,43 @@ export class BookComponent implements OnInit {
 
   book: Book | null = null;
 
+  legend = '';
+
   form = this.fb.group({
-    isbn: [this.book?.isbn, []],
-    title: [this.book?.title, []],
-    author: [this.book?.author, []],
-    state: [this.book?.state, []]
+    'bookDetails': [this.book, {
+      validators: [Validators.required],
+      asyncValidators: [IsbnValidator(this.libraryService)]
+    }]
   })
 
   constructor(public fb: FormBuilder,
-              private route: ActivatedRoute){}
+              private route: ActivatedRoute,
+              private libraryService: LibraryService){}
 
   ngOnInit(): void {
     this.book = this.route
                     .snapshot
                     .data['book'];
 
-    this.form.controls['isbn'].setValue(this.book?.isbn);
-    this.form.controls['title'].setValue(this.book?.title);
-    this.form.controls['author'].setValue(this.book?.author);
-    this.form.controls['state'].setValue(this.book?.state);
+    this.legend = `Edit: ${this.book?.title}`;
+
+    this.form
+        .controls['bookDetails']
+        .addAsyncValidators(IsbnValidator(this.libraryService));
+
+    this.form
+        .controls['bookDetails']
+        .setValue(this.book);
+  }
+
+  onSave(): void {
+    if (this.form.valid) {
+
+      const formBook = this.form.get;
+
+      this.libraryService
+          .update(this.book?.id!, formBook)
+          .subscribe();
+    }
   }
 }

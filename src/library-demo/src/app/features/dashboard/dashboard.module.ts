@@ -3,10 +3,10 @@ import { ErrorHandler,
 
 import { MaterialsModule } from "@root/shared/materials.module";
 import { ShareModule } from "@root/shared/shared.module";
-import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { AppErrorHandler } from "@root/shared/handlers/app-error-handler.module";
-
 import { ConfigService } from "@root/initializer/config.service";
+
+import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { HomeService } from "./services/home.service";
 import { WelcomeComponent } from "./welcome/welcome.component";
 

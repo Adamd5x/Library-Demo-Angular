@@ -69,7 +69,7 @@ export class LibraryService extends DataService {
    checkIsbn(isbn: string): Observable<boolean | null | undefined> {
       return this.get<ApiResponse<boolean>>(`${this.url}/isbn/${isbn}`)
                  .pipe(
-                  map(x => x.data)
+                     map(x => x.data)
                  );
    }
 }

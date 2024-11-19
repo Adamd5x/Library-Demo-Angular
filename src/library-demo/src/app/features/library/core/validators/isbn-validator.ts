@@ -1,11 +1,15 @@
 import { AbstractControl,
          AsyncValidatorFn } from "@angular/forms";
 import { LibraryService } from "../../services/library.service";
-import { of } from "rxjs";
+import { map } from "rxjs";
 
-export function IsbnValidator(services: LibraryService): AsyncValidatorFn {
+export function IsbnValidator(service: LibraryService): AsyncValidatorFn {
     return (control: AbstractControl) => {
-        
-        return of({});
+        const isbn = control.value.toString();
+        return service.checkIsbn(isbn)
+                      .pipe(
+                        map(rest => {
+                            return rest ? {isbnExists: true} : null;
+                        }));
     }
 }
