@@ -3,10 +3,10 @@
     <mat-form-field>
         <mat-label>ISBN</mat-label>
         <input matInput
-        formControlName="isbn"
-        placeholder="ISBN"
-        (blur)="onTouched()"
-        required>
+               formControlName="isbn"
+               placeholder="ISBN"
+               (blur)="onTouched()"
+               required>
         <mat-error *ngIf=""></mat-error>
         <mat-hint align="end">
             / 13

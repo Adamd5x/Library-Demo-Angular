@@ -21,10 +21,7 @@ export class BookComponent implements OnInit {
   legend = '';
 
   form = this.fb.group({
-    'bookDetails': [this.book, {
-      validators: [Validators.required],
-      asyncValidators: [IsbnValidator(this.libraryService)]
-    }]
+    'bookDetails': [this.book]
   })
 
   constructor(public fb: FormBuilder,
@@ -36,7 +33,12 @@ export class BookComponent implements OnInit {
                     .snapshot
                     .data['book'];
 
-    this.legend = `Edit: ${this.book?.title}`;
+    if (this.book?.id !== '') {
+      this.legend = `Edit: ${this.book?.title}`;
+    } else {
+      'Create'
+    }
+    
 
     this.form
         .controls['bookDetails']
@@ -49,12 +51,15 @@ export class BookComponent implements OnInit {
 
   onSave(): void {
     if (this.form.valid) {
+      const bookValue = this.form.value;
 
-      const formBook = this.form.get;
-
-      this.libraryService
-          .update(this.book?.id!, formBook)
-          .subscribe();
+      if (bookValue.bookDetails && bookValue.bookDetails.id !== '') {
+        this.libraryService
+            .updateBook(bookValue.bookDetails.id, bookValue.bookDetails)
+            .subscribe();
+      } else if (bookValue.bookDetails) {
+        this.libraryService.insertBook(bookValue.bookDetails).subscribe()
+      }
     }
   }
 }

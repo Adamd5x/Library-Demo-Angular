@@ -28,20 +28,21 @@ export class BookFormComponent implements ControlValueAccessor, OnDestroy {
   onChangeSubscription: Subscription = new Subscription();
 
   bookForm: FormGroup = this.fb.group({
-    'isbn': ['', [
+    id: [null],
+    isbn: [null, [
       Validators.required,
       Validators.minLength(10),
       Validators.maxLength(10)]],
-    'title': ['', [
+    title: [null, [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(255)]],
-    'author': ['', [
+    author: [null, [
       Validators.required,
       Validators.minLength(1),
       Validators.maxLength(255)
     ]],
-    'state': ['', [
+    state: [null, [
       Validators.required
     ]]
   });

@@ -1,0 +1,1 @@
+export type BookState = 'Uknown' | 'OnTheShelf' | 'Returned' | 'Demaged' | 'Borrowed'

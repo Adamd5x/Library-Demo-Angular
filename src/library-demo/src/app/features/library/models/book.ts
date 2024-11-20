@@ -1,4 +1,4 @@
-import { BookState } from "./book-state";
+import { BookState } from "@shared/types/book-state";
 
 export interface Book {
     id: string;

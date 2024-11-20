@@ -7,7 +7,7 @@ import { DataService } from '@root/shared/base/data.service';
 import { Endpoints } from '@root/shared/functions/endpoints';
 import { Book } from '../models/book';
 import { ApiResponse } from '@root/shared/models/api-response';
-import { BookState } from '../models/book-state';
+import { BookState } from '../../../shared/types/book-state';
 import { SortOrder } from '@root/shared/types/sort-order';
 
 @Injectable()
