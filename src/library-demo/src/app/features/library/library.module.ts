@@ -12,21 +12,31 @@ import { LibraryRoutingModule } from "./library-routing.module";
 import { BookComponent } from "./book/book.component";
 import { HomeComponent } from './home/home.component';
 
-import { BookFormComponent } from "@root/shared/components/book/bookform.component";
+import { BookFormComponent } from "@shared/components/book/bookform.component";
+import { DigitOnlyDirective } from '@shared/directives/digit-only.directive';
 
 import { LibraryService } from "./services/library.service";
+import { CreateBookComponent } from './create-book/create-book.component';
+import { AddNewBookStep2Component } from "./create-book/add-new-book-step-2/add-new-book-step-2.component";
+import { AddNewBookStep3Component } from "./create-book/add-new-book-step-3/add-new-book-step-3.component";
+import { AddNewBookStep1Component } from "./create-book/add-new-book-step-1/add-new-book-step-1.component";
 
 @NgModule({
     imports: [
         CoreModule,
         LibraryRoutingModule,
         ReactiveFormsModule,
-        MaterialsModule
+        MaterialsModule,
+        DigitOnlyDirective
     ],
     declarations: [
         HomeComponent,
         BookComponent,
-        BookFormComponent
+        BookFormComponent,
+        CreateBookComponent,
+        AddNewBookStep1Component,
+        AddNewBookStep2Component,
+        AddNewBookStep3Component
     ],
     providers: [
         LibraryService,

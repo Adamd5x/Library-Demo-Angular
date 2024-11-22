@@ -5,7 +5,7 @@ import { map } from "rxjs";
 
 export function IsbnValidator(service: LibraryService): AsyncValidatorFn {
     return (control: AbstractControl) => {
-        const isbn = control.value.toString();
+        const isbn = control.value;
         return service.checkIsbn(isbn)
                       .pipe(
                         map(rest => {

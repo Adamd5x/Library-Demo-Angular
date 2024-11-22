@@ -40,9 +40,9 @@ export class BookComponent implements OnInit {
     }
     
 
-    this.form
-        .controls['bookDetails']
-        .addAsyncValidators(IsbnValidator(this.libraryService));
+    // this.form
+    //     .controls['bookDetails']
+    //     .addAsyncValidators(IsbnValidator(this.libraryService));
 
     this.form
         .controls['bookDetails']

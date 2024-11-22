@@ -1,0 +1,20 @@
+:host {
+    div {
+        .stepper-buttons{            
+            display: flex;
+            width: 100%;
+            justify-items: center;
+            align-items: center;
+            margin-top: .5rem;
+            border: dotted 1px gray;
+
+            button {
+                margin: .5rem;
+            }
+        }
+    }
+
+    button {
+        margin: .5rem;
+    }
+}

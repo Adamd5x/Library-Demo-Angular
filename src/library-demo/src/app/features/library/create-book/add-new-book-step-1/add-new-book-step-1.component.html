@@ -1,0 +1,8 @@
+<div [formGroup]="form">
+    <book-form formControlName="book"
+               #bookForm></book-form>
+</div>
+<div>
+    <p>{{ form.value | json }}</p>
+    <p>{{ form.valid }}</p>
+</div>        

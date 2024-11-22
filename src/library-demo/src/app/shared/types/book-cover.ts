@@ -1,0 +1,1 @@
+export type BookCover = 'hard' | 'soft' | 'none';

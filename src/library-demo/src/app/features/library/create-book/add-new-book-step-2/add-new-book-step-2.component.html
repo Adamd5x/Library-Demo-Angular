@@ -1,0 +1,25 @@
+<div [formGroup]="form">
+    <div class="cover-container">
+        <div class="cover-type">
+            <fieldset appearance="outline">
+                <legend>Medium</legend>
+                <mat-radio-group formControlName="mediumType">
+                    <mat-radio-button value="print">Printed</mat-radio-button>
+                    <mat-radio-button value="digital">Digital</mat-radio-button>
+                </mat-radio-group>
+            </fieldset>            
+            <mat-form-field appearance="outline">
+                <mat-select formControlName="coverType">
+                    <mat-option value="none">No cover</mat-option>
+                    <mat-option value="hard">Hard cover</mat-option>
+                    <mat-option value="soft">Soft cover</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="cover-image">
+            <fieldset>
+                <legend>Cover image</legend>
+            </fieldset>
+        </div>
+    </div>
+</div>

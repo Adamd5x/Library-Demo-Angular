@@ -5,17 +5,23 @@ import { RouterModule,
 import { HomeComponent } from "./home/home.component";
 import { BookComponent } from "./book/book.component";
 import { BookResolver } from "./core/resolvers/book-resolver";
+import { CreateBookComponent } from "./create-book/create-book.component";
+
 
 const routes: Routes = [
     {
         path: '',
         component: HomeComponent
-    },
+    },    
     {
-        path: ':id',
+        path: 'book/:id',
         component: BookComponent,
         resolve: { book: BookResolver }
-    }
+    },
+    {
+        path: 'new',
+        component: CreateBookComponent
+    },
 ];
 
 @NgModule({

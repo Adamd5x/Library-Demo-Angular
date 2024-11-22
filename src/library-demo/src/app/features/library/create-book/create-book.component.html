@@ -1,0 +1,70 @@
+
+<div class="container">    
+    <mat-card>
+        <mat-card-content>
+                <mat-horizontal-stepper [linear]="true"
+                                        labelPosition="bottom"
+                                        class="mat-elevation-z5">
+                    <mat-step [stepControl]="step1.form"
+                              errorMessage="Book data in error">
+                        <ng-template matStepLabel>Book details</ng-template>
+                        <add-new-book-step-1 #step1/>
+                        <div class="stepper-buttons">
+                            <button mat-raised-button
+                                    color="primary"
+                                    type="button"
+                                    matStepperNext>
+                                Next
+                            </button>
+                        </div>
+                    </mat-step>
+                    <mat-step [stepControl]="step2.form"
+                            errorMessage="Book cover in error">
+                        <ng-template matStepLabel>Book cover</ng-template>
+                        <add-new-book-step-2 #step2/>                  
+                        <div class="stepper-buttons">
+                            <button mat-raised-button
+                                    color="secondary"
+                                    type="button"
+                                    matStepperPrevious>
+                                Back to step 1
+                            </button>
+                            <button mat-raised-button
+                                    color="promary"
+                                    type="button"
+                                    matStepperNext>
+                                Next
+                            </button>
+                        </div>
+                    </mat-step>
+                    <mat-step [stepControl]="step3.form"
+                            errorMessage="Book description in error">
+                        <ng-template matStepLabel>Book description</ng-template>
+                        <add-new-book-step-3 
+                                            #step3/>
+                        <div class="stepper-buttons">
+                            <button mat-raised-button
+                                    color="secondary"
+                                    type="button"
+                                    matStepperPrevious>
+                                Back to step 2
+                            </button>
+                            <button mat-raised-button
+                                    color="promary"
+                                    type="button"
+                                    [disabled]="!step1.form.valid && !step2.form.valid && !step3.form.valid"
+                                    (click)="onSubmit(step1.form, step2.form, step3.form)"
+                                    matStepperNext>
+                                Create
+                            </button>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+        </mat-card-content>
+    </mat-card>    
+    <mat-card>
+        <mat-card-actions align="end">
+            <button mat-raised-button routerLink=".."><mat-icon>book_library</mat-icon>Library</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

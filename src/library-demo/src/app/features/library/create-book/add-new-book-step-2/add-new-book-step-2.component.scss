@@ -1,0 +1,22 @@
+:host {
+    .cover-container {
+        display: flex;
+        .cover-type {
+            width: 60%;
+            
+        }
+
+        .cover-image {
+            height: 200px;
+        }
+
+        cover-image {
+            width: 100%;
+        }
+    }
+
+    mat-form-field {
+        margin-top: 1rem;
+        width: 100%;
+    }
+}

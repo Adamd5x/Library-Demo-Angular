@@ -18,3 +18,12 @@
         padding: 0 1rem 0 1rem;
     }
 }
+
+.FormState {
+    display: block;
+
+    & > div {
+        display: block;
+        margin: .8rem;
+    }
+}
